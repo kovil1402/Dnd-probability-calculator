@@ -1,0 +1,15 @@
+button {
+    height:50px;
+    width:100px;
+    border-radius:10%;
+    border:0;
+    background-color:#e66465;
+    border-radius:50%;
+}
+button:focus {
+    outline:none;
+}
+button:hover {
+    background-color:#df4b4b;
+   
+}
