@@ -272,6 +272,7 @@ window.addEventListener('load', function () {
 
         spellsButton.onclick = () => {
 
+            spellsButton.setAttribute('disabled', 'disabled');
             const requestURL = `https://www.dnd5eapi.co/api/spells`
 
             const xhr = new XMLHttpRequest()
@@ -298,8 +299,9 @@ window.addEventListener('load', function () {
                 xhr.open('GET', defaultUrl + spellUrl);
                 xhr.responseType = 'json'
                 xhr.onload = () => {
-                    console.log(xhr.response.desc)
-                    description.innerHTML = `${xhr.response.desc}`
+                    console.log(xhr.response.desc);
+                    description.innerHTML = `${xhr.response.desc}`;
+                    spellsButton.removeAttribute('disabled');
                 }
                 xhr.send()
 
