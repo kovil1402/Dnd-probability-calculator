@@ -1,13 +1,26 @@
 window.addEventListener('load', function () {
-    let content = document.querySelector('.content')
+    let buttonContainer = document.querySelector('.button-container')
     let el = document.createElement('button');
-    el.className = 'mui-btn mui-btn--danger mui-btn--raised';
+    el.className = 'calc-button mui-btn mui-btn--danger mui-btn--raised';
     el.setAttribute('style', 'margin:5px;font-size:20px;text-transform: initial;height:45px;')
     el.innerHTML = 'Посчитать вероятность';
-    content.appendChild(el);
+    buttonContainer.appendChild(el);
 
-    let button = document.querySelector('button')
-    button.addEventListener('click', () => {
+    el = document.createElement('button');
+    el.className = 'D20-button mui-btn mui-btn--danger mui-btn--raised';
+    el.setAttribute('style', 'margin:5px;font-size:20px;text-transform: initial;height:45px;')
+    el.innerHTML = 'Бросить 1D20';
+    buttonContainer.appendChild(el);
+
+    el = document.createElement('button');
+    el.className = 'spells-button mui-btn mui-btn--danger mui-btn--raised';
+    el.setAttribute('style', 'margin:5px;font-size:20px;text-transform: initial;height:45px;')
+    el.innerHTML = 'Случайное заклинание';
+    document.querySelector('.spells').appendChild(el);
+
+
+    let calcButton = document.querySelector('.calc-button')
+    calcButton.addEventListener('click', () => {
         let firstValue = document.querySelector('#player').value;
         let secondValue = document.querySelector('#npc').value;
 
@@ -242,6 +255,58 @@ window.addEventListener('load', function () {
         // Dam = Math.round(Dam);
         // console.log(Dam);
 
+
+    })
+    let dButton = document.querySelector('.D20-button');
+    dButton.addEventListener('click', () => {
+        let result = Math.round((Math.random() * 19) + 1);
+        document.querySelector('.d-output').innerHTML = `${result}`;
+        document.querySelector('.d-output').setAttribute('style', 'opacity:1;');
+
+    })
+    let spellsButton = document.querySelector('.spells-button');
+    spellsButton.addEventListener('click', () => {
+        let description = document.querySelector('.description');
+        let index = document.querySelector('.name');
+
+
+        spellsButton.onclick = () => {
+
+            const requestURL = `https://www.dnd5eapi.co/api/spells`
+
+            const xhr = new XMLHttpRequest()
+
+            xhr.open('GET', requestURL)
+
+            xhr.responseType = 'json'
+            xhr.onload = () => {
+                // let el = document.createElement('div');
+                // const num = xhr.response.damage.damage_at_slot_level[3];
+                // el.innerHTML = `${num}`;
+                // document.body.appendChild(el)
+                let count = xhr.response.count;
+                count = Math.round(Math.random() * (count - 1));
+
+                let result = xhr.response.results[count].name;
+                console.log(result);
+
+                index.innerHTML = `${result}`;
+                spellUrl = xhr.response.results[count].url;
+                console.log(spellUrl)
+                defaultUrl = `https://www.dnd5eapi.co`;
+
+                xhr.open('GET', defaultUrl + spellUrl);
+                xhr.responseType = 'json'
+                xhr.onload = () => {
+                    console.log(xhr.response.desc)
+                    description.innerHTML = `${xhr.response.desc}`
+                }
+                xhr.send()
+
+            }
+
+            xhr.send()
+        }
 
     })
 });

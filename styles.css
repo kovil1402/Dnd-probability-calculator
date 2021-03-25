@@ -6,23 +6,25 @@
     min-height: 1000px;
 }
 .content {
-    padding-top:100px;
+    padding-top:50px;
     display:flex;
     justify-content: center;
     align-items: center;
 
 }
 header {
+    position: relative;
     width:100%;
     height:50px;
     background-color:#F44336;
-    box-shadow: 0 0 2px rgb(0 0 0 / 22%), 0 2px 2px rgb(0 0 0 / 40%);
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
     color:#fff;
     font-size:20px;
     display:flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    z-index:100;
 }
 
 input {
@@ -44,9 +46,84 @@ input::-webkit-inner-spin-button {
     position:absolute;
     background-color:#F44336;
     box-shadow: 0 0 2px rgb(0 0 0 / 22%), 0 2px 2px rgb(0 0 0 / 40%);
-    top:55px;
+    top:50px;
     font-size:20px;
     transition: opacity 1s;
     opacity:0;
+    text-align:center;
+    /* width:505px; */
+    width:100%;
+    border-radius:2px;
 
+}
+
+.d-output{
+    position:absolute;
+    background-color:#F44336;
+    box-shadow: 0 0 2px rgb(0 0 0 / 22%), 0 2px 2px rgb(0 0 0 / 40%);
+    top:100px;
+    color:#fff;
+    font-size:85px;
+    opacity:0;
+    transition: opacity 1s;
+    height:118px;
+    text-align:center;
+    margin:5px;
+    width:97%;
+    border-radius:2px;
+    
+
+}
+.button-container {
+    position:relative;
+}
+.D20-button {
+    position:absolute;
+    top:50px;
+    right:0;
+    width:281px;
+    margin-top:0;
+}
+
+
+.spells {
+    margin-top:170px;
+    display:flex;
+    justify-content: center;
+    
+    
+
+
+}
+
+.spells-content {
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.name-container {
+    width:500px;
+
+}
+.name {
+    background-color:#F44336;
+    color:#fff;
+    font-size:30px;
+    text-align:center;
+    padding:5px;
+    border-radius: 2px;
+    margin:10px;
+}
+.description {
+    width:500px;
+    background-color:#F44336;
+    color:#fff;
+    font-size:13px;
+    margin:10px;
+    padding:10px;
+    border-radius: 2px;
+}
+
+.mui-btn {
+    margin-top:0;
 }
