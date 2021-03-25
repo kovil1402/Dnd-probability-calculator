@@ -273,6 +273,7 @@ window.addEventListener('load', function () {
         spellsButton.onclick = () => {
 
             spellsButton.setAttribute('disabled', 'disabled');
+            spellsButton.innerHTML = 'Подождите...';
             const requestURL = `https://www.dnd5eapi.co/api/spells`
 
             const xhr = new XMLHttpRequest()
@@ -302,6 +303,7 @@ window.addEventListener('load', function () {
                     console.log(xhr.response.desc);
                     description.innerHTML = `${xhr.response.desc}`;
                     spellsButton.removeAttribute('disabled');
+                    spellsButton.innerHTML = 'Случайное заклинание';
                 }
                 xhr.send()
 
